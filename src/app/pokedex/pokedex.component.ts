@@ -43,6 +43,7 @@ export class PokedexComponent implements OnInit {
     this.ps.getPoke(this.newPokeId).pipe(
       switchMap( (poke: any) => this.ps.getTrainer(this.TrainId).pipe(
         map( (t: Trainer) => ({t, poke}))
+       
       ))
     ).pipe(
       switchMap( ({t, poke}) => this.ps.addPoke(new Pokemon(0, poke.id, poke.name, poke.base_experience, t)).pipe(
